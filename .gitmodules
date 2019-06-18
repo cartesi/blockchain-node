@@ -1,0 +1,6 @@
+[submodule "contracts"]
+	path = contracts
+	url = git@github.com:cartesi/contracts.git
+[submodule "riscv-solidity"]
+	path = riscv-solidity
+	url = git@github.com:cartesi/riscv-solidity.git
