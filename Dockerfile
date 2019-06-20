@@ -52,10 +52,16 @@ WORKDIR $BASE
 RUN \
     bash install_contracts.sh
 
-#Running ganache from saved state
+#Exporting some needed files to interact with the
+#deployed contracts and running ganache from saved state
 # ----------------------------------------------------
 CMD \
+    cp deployed_dispute_contracts.yaml /root/host && \
     cp step.add /root/host && \
-    cp compute_instantiator.add /root/host/ && \
+    cp mm.add /root/host && \
+    cp /opt/cartesi-node/contracts/build/contracts/ComputeInstantiator.json /root/host && \
+    cp /opt/cartesi-node/contracts/build/contracts/VGInstantiator.json /root/host && \
+    cp /opt/cartesi-node/contracts/build/contracts/MMInstantiator.json /root/host && \
+    cp /opt/cartesi-node/contracts/build/contracts/PartitionInstantiator.json /root/host && \
     riscv-solidity/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 --allowUnlimitedContractSize -e 200000000 -i=7777 -d --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action"
 
