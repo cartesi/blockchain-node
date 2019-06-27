@@ -24,29 +24,30 @@ RUN \
 RUN \
     mkdir $GANACHE_DB_DIR
 
-# Copying source files
-# ----------------------------------------------------
-COPY . $BASE
-
 # Installing contracts dependencies and building
 # ----------------------------------------------------
+COPY contracts $BASE/contracts
 WORKDIR $BASE/contracts
 
 RUN \
+    rm .git && rm .gitignore && rm .gitmodules && \
+    rm -rf subleq && \
     npm install && \
     ./node_modules/.bin/truffle compile
 
 # Installing riscv-solidiity dependencies and building
 # ----------------------------------------------------
-
+COPY riscv-solidity $BASE/riscv-solidity
 WORKDIR $BASE/riscv-solidity
 
 RUN \
+    rm .git && rm .gitignore && \
     npm install && \
     ./node_modules/.bin/truffle compile
 
 # Deploying the contracts in ganache and saving it's state
 # ----------------------------------------------------
+COPY install_contracts.sh $BASE
 WORKDIR $BASE
 
 RUN \
@@ -63,5 +64,5 @@ CMD \
     cp /opt/cartesi-node/contracts/build/contracts/VGInstantiator.json /root/host && \
     cp /opt/cartesi-node/contracts/build/contracts/MMInstantiator.json /root/host && \
     cp /opt/cartesi-node/contracts/build/contracts/PartitionInstantiator.json /root/host && \
-    riscv-solidity/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 --allowUnlimitedContractSize -e 200000000 -i=7777 -d --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action"
+    riscv-solidity/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 --allowUnlimitedContractSize -e 200000000 -i=7777 -d -h 0.0.0.0 --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action"
 
