@@ -1,6 +1,6 @@
 [submodule "arbitration-dlib"]
-	path = contracts
-	url = git@github.com:cartesi/arbritration-dlib.git
+	path = arbitration-dlib
+	url = git@github.com:cartesi/arbitration-dlib.git
 [submodule "machine-solidity-step"]
 	path = machine-solidity-step
 	url = git@github.com:cartesi/machine-solidity-step.git
