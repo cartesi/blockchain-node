@@ -13,7 +13,7 @@ mkdir -p $CARTESI_CONFIG_PATH
 rm -rf $GANACHE_DB_DIR
 mkdir -p $GANACHE_DB_DIR
 
-riscv-solidity/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 --allowUnlimitedContractSize -e 200000000 -i=7777 -d --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action" 2>&1 > ganache-output.log &
+machine-solidity-step/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 -e 200000000 -i=7777 -d --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action" 2>&1 > ganache-output.log &
 
 GANACHE_PID=$!
 
@@ -25,9 +25,11 @@ function migrate() {
 export CARTESI_CONFIG_FILE_PATH="$CARTESI_CONFIG_FILE_PATH"
 export MM_ADD_FILE_PATH="$MM_ADD_FILE_PATH"
 
-migrate /opt/cartesi-node/contracts
+migrate /opt/cartesi-node/arbitration-dlib
+
 export CARTESI_INTEGRATION_MM_ADDR=`cat $MM_ADD_FILE_PATH`
 export STEP_ADD_FILE_PATH="$STEP_ADD_FILE_PATH"
-migrate /opt/cartesi-node/riscv-solidity
+
+migrate /opt/cartesi-node/machine-solidity-step
 
 kill $GANACHE_PID

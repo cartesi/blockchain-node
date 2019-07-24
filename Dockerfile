@@ -26,8 +26,8 @@ RUN \
 
 # Installing contracts dependencies and building
 # ----------------------------------------------------
-COPY contracts $BASE/contracts
-WORKDIR $BASE/contracts
+COPY arbitration-dlib $BASE/arbitration-dlib
+WORKDIR $BASE/arbitration-dlib
 
 RUN \
     rm .git && rm .gitignore && rm .gitmodules && \
@@ -35,10 +35,10 @@ RUN \
     npm install && \
     ./node_modules/.bin/truffle compile
 
-# Installing riscv-solidiity dependencies and building
+# Installing machine-solidiity dependencies and building
 # ----------------------------------------------------
-COPY riscv-solidity $BASE/riscv-solidity
-WORKDIR $BASE/riscv-solidity
+COPY machine-solidity-step $BASE/machine-solidity-step
+WORKDIR $BASE/machine-solidity-step
 
 RUN \
     rm .git && rm .gitignore && \
@@ -50,8 +50,11 @@ RUN \
 COPY install_contracts.sh $BASE
 WORKDIR $BASE
 
+
 RUN \
     bash install_contracts.sh
+
+#WORKDIR $BASE/arbitration-dlib
 
 #Exporting some needed files to interact with the
 #deployed contracts and running ganache from saved state
@@ -60,9 +63,9 @@ CMD \
     cp deployed_dispute_contracts.yaml /root/host && \
     cp step.add /root/host && \
     cp mm.add /root/host && \
-    cp /opt/cartesi-node/contracts/build/contracts/ComputeInstantiator.json /root/host && \
-    cp /opt/cartesi-node/contracts/build/contracts/VGInstantiator.json /root/host && \
-    cp /opt/cartesi-node/contracts/build/contracts/MMInstantiator.json /root/host && \
-    cp /opt/cartesi-node/contracts/build/contracts/PartitionInstantiator.json /root/host && \
-    riscv-solidity/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 --allowUnlimitedContractSize -e 200000000 -i=7777 -d -h 0.0.0.0 --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action"
-
+    cp /opt/cartesi-node/arbitration-dlib/build/contracts/ComputeInstantiator.json /root/host && \
+    cp /opt/cartesi-node/arbitration-dlib/build/contracts/VGInstantiator.json /root/host && \
+    cp /opt/cartesi-node/arbitration-dlib/build/contracts/MMInstantiator.json /root/host && \
+    cp /opt/cartesi-node/arbitration-dlib/build/contracts/PartitionInstantiator.json /root/host && \
+    machine-solidity-step/node_modules/.bin/ganache-cli --db=$GANACHE_DB_DIR -l 9007199254740991 -e 200000000 -i=7777 -d -h 0.0.0.0 --mnemonic="mixed bless goat recipe urban pair tuna diet drive capable normal action"
+#
