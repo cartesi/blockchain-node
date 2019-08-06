@@ -45,7 +45,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## License
 
-The blockchain-node repository and all contributions are licensed under [APACHE 2.0.](https://www.apache.org/licenses/LICENSE-2.0) Please review our [LICENSE]() file.
+The blockchain-node repository and all contributions are licensed under [APACHE 2.0.](https://www.apache.org/licenses/LICENSE-2.0) Please review our [LICENSE](https://github.com/cartesi/blockchain-node/blob/add-license/LICENSE) file.
 
 ## Acknowledgments
 
