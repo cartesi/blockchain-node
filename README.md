@@ -35,7 +35,7 @@ Once you do that you'll have a local instance listening on port 8545 ready to in
 
 ## Contributing
 
-Pull requests are welcome. When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+Thank you for your interest in Cartesi! Head over to our [Contributing Guidelines](https://github.com/cartesi/blockchain-node/blob/master/CONTRIBUTING.md) for instructions on how to sign our Contributors Agreement and get started with Cartesi!
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
