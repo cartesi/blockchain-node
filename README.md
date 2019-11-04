@@ -1,3 +1,5 @@
+> :warning: The Cartesi team keeps working internally on the next version of this repository, following its regular development roadmap. Whenever there's a new version ready or important fix, these are published to the public source tree as new releases.
+
 # Cartesi Blockchain Node
 
 The Cartesi Blockchain Node is a development/testing Ganache Ethereum node instance that runs inside a docker container and has all Cartesi blockchain contracts deployed. The contracts come from two different repositories that are submodules of this repository:
